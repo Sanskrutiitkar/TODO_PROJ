@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+ {% block page_title_header %} ChnagePassword {% endblock %}
+{% block content %}
+	<script>
+		function check1()
+		{
+			let pw1= document.getElementById("pw1");
+			let pw2= document.getElementById("pw2");
+			if(pw1.value==pw2.value)
+			{
+				return true;
+			}
+			else
+			{
+				alert("password did not match")
+				pw1.value="";
+				pw2.value="";
+				pw1.focus();
+				return false;	
+			}
+		}
+
+	</script>
+
+<h1> Change Password- </h1>
+<form method="POST" onsubmit="return check1()">
+	{% csrf_token %}
+	<input type="text" name="un" placeholder="enter registerd username" required>
+	<br><br>
+	<input type="password" name="pw1" placeholder="enter new password" id="pw1" minlength="4" required>
+	<br><br>
+	<input type="password" name="pw2" placeholder="enter new password again" id="pw2" minlength="4" required>
+	<br><br>
+	<input type="submit" value="Register">
+</form>
+ 	<h2 style="background-color:black; color:white; width:30%;"> {{ msg }} </h2>
+
+{% endblock %}

@@ -1,0 +1,22 @@
+
+{% extends 'base.html' %}
+ {% block page_title_header %} Authetication-login page {% endblock %}
+{% block main %}
+
+<br><br>
+<h1> Login-Page </h1>
+
+<form method="POST">
+	{% csrf_token %}
+	<input type="text" name="un" placeholder="enter username" required>
+	<br><br>
+	<input type="password" name="pw" placeholder="enter password" required>
+	<br><br>
+	<input type="submit" value="Login">
+</form>
+	<a href="{% url 'usignup' %}"> Are you new here? </a>
+	<br>
+ 	<h2 style="background-color:black; color:white; width:30%;"> {{ msg }} </h2>
+
+
+{% endblock %}

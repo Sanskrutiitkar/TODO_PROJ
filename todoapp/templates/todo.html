@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+ {% block page_title_header %} List of task's {% endblock %}
+{% block content %}
+<style>
+table, td, th {
+  border: 1px solid;
+}
+
+table {
+  width: 70%;
+  height: 30%;
+  border-collapse: collapse;
+  text-align:center;
+}
+
+a{text-decoration:none;}
+a:hover{color:red; background-color:transparent;}
+
+
+</style>
+<title> Task on list </title>
+
+<h1> Task's for today!! </h1>
+
+<table bgcolor="#E6D7D4"> 
+<tr>
+	<th> Task </th>
+	<th> Detailed-View </th>
+	<th> Delete </th>
+	<th> Done </th>
+</tr>
+{% for d in data %}
+
+{% if d.done %}
+<tr>	
+	<td> {{ d.task }} </td>
+	<td> <a href="{% url 'todoview' tid=d.id %}"> View </a></td>
+	<td> <a href="{% url 'tododelete' tid=d.id %}" onclick="return confirm('Are you sure??')"> Delete </a></td>
+	<td> Done </td>
+</tr>
+
+{% else %}
+<tr>	
+	<td> {{ d.task }} </td>
+	<td> <a href="{% url 'todoview' tid=d.id %}"> View </a></td>
+	<td> <a href="{% url 'tododelete' tid=d.id %}" onclick="return confirm('Are you sure??')"> Delete </a></td>
+	<td><a href="{% url 'todocomp' tid=d.id %}">  Marks as done </a></td>
+</tr>
+
+{% endif %}
+{% empty %}
+<tr><td colspan="4"> No Task Available </td></tr>
+{% endfor %}
+	<h2> <a href="{% url 'todocreate' %}"> Create new task </a></td>
+</table>
+
+{{ msg }}
+
+{% endblock %}

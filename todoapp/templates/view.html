@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+ {% block page_title_header %} DetailedView {% endblock %}
+{% block content %}
+
+<h1> Detailed Task </h1>
+
+	
+<p style="padding: 10px; border: 5px solid black; width:75%;"> Task to complete: {{ data.task }} 
+	
+<br> Description of task: {{ data.description }} </p>
+
+
+{% if data.done %}
+
+<h2 style="text-decoration: underline overline; color:green;" > Task completed </h2>
+
+{% else %}
+
+<h2 style="text-decoration: underline overline; color:red;" > Task pending </h2>
+
+{% endif %}
+<h2> <a href="{% url 'todo' %}" style="text-decoration:none;"> Return to Task's page? </a> </h2>
+
+{% endblock %}
+

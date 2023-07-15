@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+ {% block page_title_header %} Create new task {% endblock %}
+{% block content %}
+
+
+
+<h1> Create New Task Here- </h1>
+<form method="POST">
+	{% csrf_token %}
+	<table style="padding:20px;" cellspacing="10">
+	
+		{{ fm.as_table }}
+	
+	</table>
+	<br>
+	<input type="submit" value="Save">
+</form>
+	<h2 style="background-color:black; color:white; width:30%;"> {{ msg }} </h2>
+<h2> <a href="{% url 'todo' %}"   > Return to Task's page? </a> </h2>
+{% endblock %}

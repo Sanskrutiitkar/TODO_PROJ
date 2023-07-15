@@ -1,0 +1,40 @@
+
+{% extends 'base.html' %}
+ {% block page_title_header %} Authetication-signup page {% endblock %}
+{% block content %}
+	<script>
+
+		
+		function check()
+		{
+			let pw1= document.getElementById("pw1");
+			let pw2= document.getElementById("pw2");
+			if(pw1.value==pw2.value )
+			{
+				return true;
+			}
+			else
+			{
+				alert("password did not match")
+				pw1.value="";
+				pw2.value="";
+				pw1.focus();
+				return false;	
+			}
+		}
+	</script>
+	<br><br>
+	<h1> Signup-Page </h1>
+	<form method="POST" onsubmit="return check()">
+		{% csrf_token %}
+	<input type="text" name="un" placeholder="enter username" minlength="4" maxlength="15" required>
+	<br><br>
+	<input type="password" name="pw1" placeholder="enter password" id="pw1" minlength="4" required>
+	<br><br>
+	<input type="password" name="pw2" placeholder="enter password again" id="pw2" minlength="4" required>
+	<br><br>
+	<input type="submit" value="Register">
+	</form>
+ 	<h2 style="background-color:black; color:white; width:30%;"> {{ msg }} </h2>
+
+{% endblock %}
